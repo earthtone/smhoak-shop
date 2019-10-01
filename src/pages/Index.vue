@@ -2,7 +2,7 @@
   <Layout>
     <div class="flex flex-col lg:flex-row w-full items-center justify-around md:max-w-6xl md:mx-auto">
       <div class="flex w-full min-w-6xl h-full min-h-screen justify-center items-center mx-6">
-        <g-image src="~/assets/001.jpg"/>
+        <g-image src="~/assets/current.jpg"/>
       </div>
       <article class="flex flex-col w-full h-full lg:-mt-24 px-6 mb-12 md:items-end lg:items-start">
         <h3 class="text-2xl mb-6 lg:mb-12">{{ $page.shirt.title }}</h3>
