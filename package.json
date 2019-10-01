@@ -1,0 +1,18 @@
+{
+  "name": "smhoak-shop",
+  "private": true,
+  "scripts": {
+    "build": "gridsome build",
+    "develop": "gridsome develop",
+    "explore": "gridsome explore"
+  },
+  "dependencies": {
+    "gridsome": "^0.7.0"
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^1.3.0",
+    "@gridsome/source-filesystem": "^0.6.0",
+    "@gridsome/transformer-json": "^0.2.1",
+    "tailwindcss": "^1.1.2"
+  }
+}
