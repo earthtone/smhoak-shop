@@ -4,10 +4,20 @@
 
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
+const fs = require('fs').promises
 
 module.exports = function (api) {
-  api.loadSource(({ addCollection }) => {
+  api.loadSource(async ({ addCollection }) => {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
+
+    const images = addCollection('ShirtImages')
+    const files = await fs.readdir('./static/assets/current/')
+
+    for (file of files) {
+      images.addNode({
+        filename: '/assets/current/' + file
+      })
+    }
   })
 
   api.createPages(({ createPage }) => {

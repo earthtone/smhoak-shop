@@ -8,3 +8,4 @@ dist
 .env.*
 src/assets/archive
 src/data/**/*json
+static/assets/archive

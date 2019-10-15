@@ -4,15 +4,18 @@
     <input type="hidden" name="business" :value="paypalAccount">
     <input type="hidden" name="lc" value="US">
     <input type="hidden" name="item_name" :value="productName">
-    <input type="hidden" name="item_number" :value="productNum">
-    <input type="hidden" name="amount" value="25.00">
-    <input type="hidden" name="currency_code" value="USD">
+    <input type="hidden" name="item_number" :value="productNumber">
     <input type="hidden" name="button_subtype" value="services">
     <input type="hidden" name="no_note" value="0">
-    <input type="hidden" name="shipping" value="10.00">
-    <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_SM.gif:NonHostedGuest">
+    <input type="hidden" name="currency_code" value="USD">
+    <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
     <table>
-    <tr><td><input type="hidden" name="on0" value="Sizes">Sizes</td></tr><tr><td><select name="os0">
+    <tr><td><input type="hidden" name="on0" value="whatchoo want?">whatchoo want?</td></tr><tr><td><select name="os0">
+        <option :value="`${productNumber} delivery`">{{ productNumber }} delivery $30.00 USD</option>
+        <option :value="`${productNumber} ridgewood pickup`">{{ productNumber }} ridgewood pickup $20.00 USD</option>
+        <option value="3 month subscription">3 month subscription $150.00 USD</option>
+    </select> </td></tr>
+    <tr><td><input type="hidden" name="on1" value="size?">size?</td></tr><tr><td><select name="os1">
         <option value="XS">XS </option>
         <option value="S">S </option>
         <option value="M">M </option>
@@ -20,10 +23,17 @@
         <option value="XL">XL </option>
         <option value="XXL">XXL </option>
     </select> </td></tr>
-    <tr><td><input type="hidden" name="on1" value="SHIPPING ADDRESS">SHIPPING ADDRESS</td></tr><tr><td><input type="text" name="os1" maxlength="200"></td></tr>
-    <tr><td><input type="hidden" name="on2" value="EMAIL">EMAIL</td></tr><tr><td><input type="text" name="os2" maxlength="200"></td></tr>
+    <tr><td><input type="hidden" name="on2" value="shipping address?">shipping address?</td></tr><tr><td><input type="text" name="os2" maxlength="200"></td></tr>
+    <tr><td><input type="hidden" name="on3" value="email?">email?</td></tr><tr><td><input type="text" name="os3" maxlength="200"></td></tr>
     </table>
-    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <input type="hidden" name="option_select0" :value="`${productNumber} delivery`">
+    <input type="hidden" name="option_amount0" value="30.00">
+    <input type="hidden" name="option_select1" :value="`${productNumber} ridgewood pickup`">
+    <input type="hidden" name="option_amount1" value="20.00">
+    <input type="hidden" name="option_select2" value="3 month subscription">
+    <input type="hidden" name="option_amount2" value="150.00">
+    <input type="hidden" name="option_index" value="0">
+    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
     <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
   </form>
 </template>
