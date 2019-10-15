@@ -11,11 +11,11 @@ module.exports = function (api) {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
 
     const images = addCollection('ShirtImages')
-    const files = await fs.readdir('./src/assets/current/')
+    const files = await fs.readdir('./static/assets/current/')
 
     for (file of files) {
       images.addNode({
-        filename: '~assets/current/' + file
+        filename: '/assets/current/' + file
       })
     }
   })
