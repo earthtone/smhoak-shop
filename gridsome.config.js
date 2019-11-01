@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 module.exports = {
-  siteName: 'Gridsome',
+  siteName: 'Smhoak Shop',
   plugins: [{
     use: '@gridsome/source-filesystem',
     options: {

@@ -11,9 +11,8 @@
     <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
     <table>
     <tr><td><input type="hidden" name="on0" value="whatchoo want?">whatchoo want?</td></tr><tr><td><select name="os0">
-        <option :value="`${productNumber} delivery`">{{ productNumber }} delivery $30.00 USD</option>
-        <option :value="`${productNumber} ridgewood pickup`">{{ productNumber }} ridgewood pickup $20.00 USD</option>
-        <option value="3 month subscription">3 month subscription $150.00 USD</option>
+          <option :value="`${productNumber} delivery`">{{ productNumber }} delivery {{ deliveryPrice | currency }} USD</option>
+          <option :value="`${productNumber} ridgewood pickup`">{{ productNumber }} ridgewood pickup {{ pickupPrice | currency }} USD</option>
     </select> </td></tr>
     <tr><td><input type="hidden" name="on1" value="size?">size?</td></tr><tr><td><select name="os1">
         <option value="XS">XS </option>
@@ -30,8 +29,6 @@
     <input type="hidden" name="option_amount0" value="30.00">
     <input type="hidden" name="option_select1" :value="`${productNumber} ridgewood pickup`">
     <input type="hidden" name="option_amount1" value="20.00">
-    <input type="hidden" name="option_select2" value="3 month subscription">
-    <input type="hidden" name="option_amount2" value="150.00">
     <input type="hidden" name="option_index" value="0">
     <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
     <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
@@ -41,10 +38,27 @@
 <script>
 export default {
   name: 'paypal-form',
-  computed: {
-    paypalAccount: () => process.env.GRIDSOME_PAYPAL_ACCOUNT,
-    productName: () => process.env.GRIDSOME_PRODUCT_NAME,
-    productNumber: () => process.env.GRIDSOME_PRODUCT_NUMBER
+  props: {
+    paypalAccount: {
+      type: String,
+      require: true
+    },
+    productName: {
+      type: String,
+      required: true
+    },
+    productNumber: {
+      type: String,
+      required: true
+    },
+    pickupPrice: {
+      type: String,
+      required: true
+    },
+    deliveryPrice: {
+      type: String,
+      required: true
+    }
   }
 }
 </script>

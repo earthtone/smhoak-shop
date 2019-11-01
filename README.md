@@ -2,4 +2,4 @@
 
 Static website for [smhoak.city](https://smhoak.city) t-shirt series.
 
-![t-shirt](static/assets/current/ssci2-1.jpg)
+![t-shirt](static/assets/current/ssci3.jpg)

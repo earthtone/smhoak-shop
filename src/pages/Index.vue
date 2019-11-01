@@ -6,36 +6,44 @@
         :images="$page.pictures.edges.map(n => n.node)"
         :activeIndex="activeIndex"
         @update-image="setIndex"/>
-      <article class="flex flex-col w-full h-full lg:-mt-24 px-6 mb-12 md:items-end lg:items-start">
+      <article class="flex flex-col w-full h-full lg:-mt-24 px-6 mb-12 lg:items-start">
         <h3 class="text-2xl mb-6 lg:mb-12">{{ $page.shirt.title }}</h3>
-        <p>{{ $page.shirt.domesticShipping }} {{$page.shirt.pickup }}</p>
-        <p>{{ $page.shirt.internationalShipping }}</p>
-        <p>{{ $page.shirt.details }}</p>
-        <p>{{ $page.shirt.subscription }}</p>
-        <p>order window opens {{ $page.shirt.orderWindow[0] }}</p>
-        <p>order window closes {{ $page.shirt.orderWindow[1] }}</p>
-        <p>shipping {{ $page.shirt.shippingDate }}</p>
-        <p>next piece in the collection {{ $page.shirt.nextPieceDate }}</p>
+        <p>
+        {{ $page.shirt.price | currency }}. half of each purchase goes to {{ $page.shirt.charity }}.
+        </p>
+        <p>
+        {{ $page.shirt.shipping | currency }} shipping within the continental US. now offering a free local Pick-Up option at Deep Cuts Records in Ridgewood. outside that? dm me on something.
+        </p>
+        <p>order window opens {{ $page.shirt.orderWindow[0] }}.</p>
+        <p>order window closes {{ $page.shirt.orderWindow[1] }}.</p>
+        <p>shipping {{ $page.shirt.shippingDate }}.</p>
+        <p>next piece in the collection {{ $page.shirt.nextPieceDate }}.</p>
       </article>
     </div>
     <footer class="px-6">
-      <paypal-form class="max-w-md mx-auto border border-gray-900 mb-6" />
+      <paypal-form
+        :paypalAccount="paypalAccount"
+        :productName="$page.shirt.title"
+        :productNumber="$page.shirt.productNumber"
+        :pickupPrice="pickupPrice"
+        :deliveryPrice="deliveryPrice"
+        class="max-w-md mx-auto border border-gray-900 mb-6" />
     </footer>
   </Layout>
 </template>
 <page-query>
 query Details {
-  shirt: shirtDetails (path: "/src/data/002/") {
+  shirt: shirtDetails (path: "/src/data/003/") {
+    productNumber
   	path
     title
-    details
+    charity
 		pickup
-		subscription
-    domesticShipping
-    internationalShipping
     orderWindow
     shippingDate
     nextPieceDate
+    price
+    shipping
     fileInfo {
       path
       name
@@ -74,6 +82,15 @@ export default {
   computed: {
     front () {
       return this.$page.pictures.edges[0].node.filename
+    },
+    paypalAccount () {
+      return process.env.GRIDSOME_PAYPAL_ACCOUNT
+    },
+    pickupPrice () {
+      return parseFloat(this.$page.shirt.price).toFixed(2)
+    },
+    deliveryPrice () {
+      return parseFloat(this.$page.shirt.price + this.$page.shirt.shipping).toFixed(2)
     }
   },
   methods: {
@@ -85,6 +102,6 @@ export default {
 </script>
 <style scoped>
 article p {
-  @apply my-3 max-w-xs;
+  @apply my-2 max-w-xs;
 }
 </style>
